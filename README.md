@@ -1,12 +1,12 @@
 # Simple Issue Tracker Backend
 
-A lightweight backend service built with FastAPI and SQLAlchemy to manage and track issues.
+A lightweight backend service made with FastAPI and SQLAlchemy that helps keep track of and fix problems.
 
 ## 🚀 Features
-- **Create Issue**: Add new issues with a title, description, and status.
-- **List Issues**: Retrieve all recorded issues.
-- **Update Status**: Update the status of an existing issue (Open, In Progress, Closed).
-- **Persistent Storage**: Uses SQLite for data storage.
+- **Create Issue**: Add a new issue with a title, description, and status.
+- **List Issues**: Get a list of all the issues that have been recorded.
+- **Update Status**: Change the status of an issue that is already open, in progress, or closed.
+- **Persistent Storage**: Uses SQLite to keep data safe.
 
 ---
 
