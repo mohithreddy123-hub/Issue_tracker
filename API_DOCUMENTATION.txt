@@ -1,0 +1,44 @@
+ISSUE TRACKER API DOCUMENTATION
+
+Base URL: http://127.0.0.1:8000
+
+1. CREATE ISSUE
+Endpoint: POST /issues
+Request Body:
+{
+  "title": "Fix Login Page CSS",
+  "description": "The login button is misaligned on mobile devices.",
+  "status": "Open"
+}
+Response (201 Created):
+{
+  "id": 1,
+  "title": "Fix Login Page CSS",
+  "description": "The login button is misaligned on mobile devices.",
+  "status": "Open"
+}
+
+2. GET ALL ISSUES
+Endpoint: GET /issues
+Optional Query Parameter:
+  - status: Filter issues by status (e.g., ?status=Open)
+Response (200 OK):
+[
+  {
+    "id": 1,
+    "title": "Fix Login Page CSS",
+    "description": "The login button is misaligned on mobile devices.",
+    "status": "Open"
+  }
+]
+
+3. UPDATE ISSUE STATUS
+Endpoint: PUT /issues/{id}/status
+Example: http://127.0.0.1:8000/issues/1/status?status=In Progress
+Response (200 OK):
+{
+  "id": 1,
+  "title": "Fix Login Page CSS",
+  "description": "The login button is misaligned on mobile devices.",
+  "status": "In Progress"
+}

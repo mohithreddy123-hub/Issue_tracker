@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
+from typing import Optional
 
 from database import engine, Base, get_db
 from schemas import IssueCreate, IssueResponse, StatusEnum
@@ -16,8 +17,12 @@ def create_issue(issue: IssueCreate, db: Session = Depends(get_db)):
 
 
 @app.get("/issues", response_model=list[IssueResponse])
-def get_issues(db: Session = Depends(get_db)):
-    return crud.get_all_issues(db)
+def get_issues(
+    status: Optional[StatusEnum] = Query(None, description="Filter issues by status"), 
+    db: Session = Depends(get_db)
+):
+    status_value = status.value if status else None
+    return crud.get_all_issues(db, status=status_value)
 
 
 @app.put("/issues/{issue_id}/status", response_model=IssueResponse)

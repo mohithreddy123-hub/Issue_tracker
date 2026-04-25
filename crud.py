@@ -15,8 +15,11 @@ def create_issue(db: Session, issue: IssueCreate):
     return db_issue
 
 
-def get_all_issues(db: Session):
-    return db.query(Issue).all()
+def get_all_issues(db: Session, status: str = None):
+    query = db.query(Issue)
+    if status:
+        query = query.filter(Issue.status == status)
+    return query.all()
 
 
 def update_issue_status(db: Session, issue_id: int, status: str):
