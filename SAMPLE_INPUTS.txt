@@ -1,0 +1,101 @@
+ISSUE TRACKER - SAMPLE INPUT EXAMPLES
+======================================
+
+BASE URL: http://127.0.0.1:8000
+
+========================================
+1. CREATE ISSUE — POST /issues
+========================================
+
+You can test this at: http://127.0.0.1:8000/docs
+
+--- Example 1: Open Issue ---
+{
+  "title": "Login button not working",
+  "description": "Users cannot click the login button on the homepage.",
+  "status": "Open"
+}
+
+--- Example 2: In Progress Issue ---
+{
+  "title": "Payment page crashes on submit",
+  "description": "The payment form throws a 500 error when the user clicks submit.",
+  "status": "In Progress"
+}
+
+--- Example 3: Closed Issue ---
+{
+  "title": "Profile picture not uploading",
+  "description": "Users were unable to upload profile pictures larger than 2MB. Now fixed.",
+  "status": "Closed"
+}
+
+--- Example 4: Without status (defaults to Open) ---
+{
+  "title": "Search results are incorrect",
+  "description": "The search bar returns unrelated results for certain keywords."
+}
+
+
+========================================
+2. GET ALL ISSUES — GET /issues
+========================================
+
+--- Get all issues ---
+URL: http://127.0.0.1:8000/issues
+
+--- Filter by Open issues only ---
+URL: http://127.0.0.1:8000/issues?status=Open
+
+--- Filter by In Progress issues only ---
+URL: http://127.0.0.1:8000/issues?status=In Progress
+
+--- Filter by Closed issues only ---
+URL: http://127.0.0.1:8000/issues?status=Closed
+
+
+========================================
+3. UPDATE ISSUE STATUS — PUT /issues/{id}/status
+========================================
+
+--- Mark Issue ID 1 as In Progress ---
+URL: http://127.0.0.1:8000/issues/1/status?status=In Progress
+
+--- Mark Issue ID 2 as Closed ---
+URL: http://127.0.0.1:8000/issues/2/status?status=Closed
+
+--- Mark Issue ID 3 as Open (reopen an issue) ---
+URL: http://127.0.0.1:8000/issues/3/status?status=Open
+
+
+========================================
+VALID STATUS VALUES
+========================================
+- Open
+- In Progress
+- Closed
+
+Note: Any other status value will be rejected with a 422 error.
+
+========================================
+ERROR EXAMPLES
+========================================
+
+--- Empty title (will be rejected) ---
+{
+  "title": "",
+  "description": "Some description"
+}
+Response: 422 Unprocessable Entity
+
+--- Invalid status value (will be rejected) ---
+{
+  "title": "Some Issue",
+  "description": "Some description",
+  "status": "Pending"
+}
+Response: 422 Unprocessable Entity
+
+--- Update status for non-existent issue ID ---
+URL: http://127.0.0.1:8000/issues/999/status?status=Closed
+Response: 404 Not Found — "Issue not found"
