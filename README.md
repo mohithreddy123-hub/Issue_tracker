@@ -8,6 +8,20 @@ A lightweight backend service made with FastAPI and SQLAlchemy for managing and 
 - **Update Status**: Change the status of an existing issue.
 - **Persistent Storage**: Uses SQLite for data persistence.
 
+## 📁 Project Structure
+```text
+Issue_tracker/
+├── main.py          # FastAPI application routes
+├── models.py        # SQLAlchemy database models
+├── schemas.py       # Pydantic data validation schemas
+├── crud.py          # Database CRUD logic
+├── database.py      # Database connection and session setup
+├── requirements.txt # Project dependencies
+├── issues.db        # SQLite database (auto-generated)
+├── SAMPLE_INPUTS.txt# Example JSON bodies for testing
+└── README.md        # Project documentation
+```
+
 ---
 
 ## 🛠️ Setup Instructions
